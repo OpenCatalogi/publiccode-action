@@ -10,6 +10,13 @@ To use this action, simply include it as a step in your workflow file. No inputs
 steps:
   - name: Update publiccode.yaml
     uses: your-github-username/publiccode-update-action@v1
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      REPO_DESCRIPTION: "This is a sample repository description"
+      ORGANISATION: "OpenAI"
+      TAGS: "ai, machine-learning"
+      WEBSITE: "https://openai.com"
+      LICENCE: "MIT"
 ````
 Note: Replace your-github-username with your actual GitHub username, and publiccode-update-action with the name of the repository where this action is hosted.
 
