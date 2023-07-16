@@ -1,0 +1,10 @@
+name: 'Update publiccode.yaml'
+author: 'Conduction b.v.'
+description: 'Updates the publiccode.yaml file with repository metadata'
+inputs: 
+  # Define any inputs your action needs here
+outputs: 
+  # Define any outputs your action produces here
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
