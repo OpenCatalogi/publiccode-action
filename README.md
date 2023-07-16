@@ -1,2 +1,22 @@
-# publiccode-action
+# Publiccode Action
 This GitHub Action automatically generates and updates a publiccode.yaml file in the root of your repository, based on repository metadata. The file is updated each time a push is made to the main branch.
+
+The Action works by running a Python script that reads repository metadata such as the repository name and description, and uses this information to create or update the publiccode.yaml file.
+
+## Usage
+To use this action, simply include it as a step in your workflow file. No inputs are required.
+
+````yaml
+steps:
+  - name: Update publiccode.yaml
+    uses: your-github-username/publiccode-update-action@v1
+````
+Note: Replace your-github-username with your actual GitHub username, and publiccode-update-action with the name of the repository where this action is hosted.
+
+## Inputs
+None
+
+## Outputs
+None
+
+Please note that this action does not handle errors or exceptions while reading metadata or writing to publiccode.yaml. You should ensure that your repository is properly set up to avoid any issues. For example, make sure that your repository name and description are not empty.
