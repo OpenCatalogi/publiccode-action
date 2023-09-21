@@ -9,7 +9,7 @@ To use this action, simply include it as a step in your workflow file. No inputs
 ````yaml
 steps:
   - name: Update publiccode.yaml
-    uses: OpenCatalogi/publiccode-actionn@v1
+    uses: OpenCatalogi/publiccode-action@v1
     env:
       GITHUB_REPOSITORY: ${{ github.repository }}
       REPO_DESCRIPTION: "This is a sample repository description"
