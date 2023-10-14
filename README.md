@@ -1,5 +1,5 @@
 # Publiccode Action
-This GitHub Action automatically generates and updates a publiccode.yaml file in the root of your repository, based on repository metadata. The file is updated each time a push is made to the main branch.
+This GitHub Action automatically generates and updates a publiccode.yaml file in the root of your repository, based on repository metadata. The file is updated each time a push is made to the main branch. It is basically a more advanced varsion of [the publiccode softwareversion check](https://github.com/italia/publiccode-softwareversion-check-action/tree/master)
 
 The Action works by running a Python script that reads repository metadata such as the repository name and description, and uses this information to create or update the publiccode.yaml file.
 
