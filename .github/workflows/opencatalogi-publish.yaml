@@ -20,12 +20,11 @@ jobs:
         python-version: '3.x'
     # Transfer the repossitory data to the container
     - name: Transfer the repossitory data to the container
-      run:
+      run: |
         REPO_NAME="${{ github.event.repository.name }}"
         REPO_DESC="${{ github.event.repository.description }}"
         REPO_URL="${{ github.event.repository.html_url }}"
         REPO_HOMEPAGE="${{ github.event.repository.homepage }}"
-        #REPO_TOPICS="${{ github.event.repository.topics }}"
         REPO_LICENSE="${{ github.event.repository.license.key }}"
         REPO_CREATED_AT="${{ github.event.repository.created_at }}"
         
