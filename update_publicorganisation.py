@@ -27,4 +27,3 @@ if 'nl' not in data:
 # Write updated openCatalogi.yaml
 with open("openCatalogi.yaml", "w") as f:
   yaml.safe_dump(data, f)
-END

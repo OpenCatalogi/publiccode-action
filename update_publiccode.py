@@ -54,4 +54,3 @@ if 'nl' not in data:
 # Write updated publiccode.yaml
 with open("publiccode.yaml", "w") as f:
   yaml.safe_dump(data, f)
-END
