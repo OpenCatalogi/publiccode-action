@@ -49,7 +49,7 @@ if 'softwareType' not in data:
 
 # Description
 if 'description' not in data:
-  data['description'] = ["en" = []]
+  data['description'] = {"en":[]}
 if 'en' not in data['description']:
   data['description']['en'] = []
 if 'nl' not in data['description']:
