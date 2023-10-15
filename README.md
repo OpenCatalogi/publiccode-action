@@ -26,4 +26,8 @@ None
 ## Outputs
 None
 
+## Architecture
+### Why python?
+Python is nativly supported by github actions underlaying containers and therefore very quick
+
 Please note that this action does not handle errors or exceptions while reading metadata or writing to publiccode.yaml. You should ensure that your repository is properly set up to avoid any issues. For example, make sure that your repository name and description are not empty.
