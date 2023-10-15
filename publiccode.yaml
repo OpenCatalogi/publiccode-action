@@ -1,0 +1,11 @@
+description: $REPO_DESC
+license: $REPO_LICENSE
+name: $REPO_NAME
+nl: {}
+organisation:
+  description: $ORGANISATION_DESCRIPTION
+  logo: $ORGANISATION_AVATAR
+  name: $ORGANISATION_NAME
+  url: $ORGANISATION_URL
+releaseDate: '2023-10-15'
+url: $REPO_HOMEPAGE
