@@ -53,6 +53,9 @@ runs:
         ORGANISATION_GITID="${{ github.event.organization.id}}"
         ORGANISATION_URL="${{ github.event.organization.login }}"
         ORGANISATION_AVATAR="${{ github.event.organization.avatar_url }}"
+      
+        echo "Installing PyYAML..."
+        pip install PyYAML
 
     # Bit of test coding to see if everything works
     - run: echo Hello ${{ inputs.who-to-greet }}.

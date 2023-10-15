@@ -25,12 +25,18 @@ jobs:
           REPO_URL="${{ github.event.repository.html_url }}"
           REPO_HOMEPAGE="${{ github.event.repository.homepage }}"
           REPO_LICENSE="${{ github.event.repository.license.key }}"
-          REPO_CREATED_AT="${{ github.event.repository.created_at }}"        
+          REPO_CREATED_AT="${{ github.event.repository.created_at }}" 
+          
           ORGANISATION_NAME="${{ github.event.organization.login }}"
           ORGANISATION_DESCRIPTION="${{ github.event.organization.description }}"
           ORGANISATION_GITID="${{ github.event.organization.id}}"
           ORGANISATION_URL="${{ github.event.organization.login }}"
           ORGANISATION_AVATAR="${{ github.event.organization.avatar_url }}"
+        
+          echo "Installing PyYAML..."
+          pip install PyYAML
+          
+
       # Bit of test coding to see if everything works
       - run: echo Hello ${{ inputs.who-to-greet }}.
         shell: bash
