@@ -51,19 +51,28 @@ if 'softwareType' not in data:
 if 'description' not in data:
   data['description'] = {"en":[]}
 if 'en' not in data['description']:
-  data['description']['en'] = []
-if 'nl' not in data['description']:
-  data['description']['nl'] = []
-if 'shortDescription' not in data['description']['en']:
+  data['description']['en'] = {}
+if 'nl' not in data['description']: #this is just to point out that an NL version is wanted
+  data['description']['nl'] = {}
+if 'localisedName' not in data['description']['en']:
   data['description']['en']['localisedName'] = ""
+if 'genericName' not in data['description']['en']:
   data['description']['en']['genericName'] = ""
+if 'shortDescription' not in data['description']['en']:
   data['description']['en']['shortDescription'] = ""
+if 'longDescription' not in data['description']['en']:
   data['description']['en']['longDescription'] =""
+if 'documentation' not in data['description']['en']:
   data['description']['en']['documentation'] = ""
+if 'apiDocumentation' not in data['description']['en']:
   data['description']['en']['apiDocumentation'] = ""
+if 'features' not in data['description']['en']:
   data['description']['en']['features'] = []
+if 'screenshots' not in data['description']['en']:
   data['description']['en']['screenshots'] = []
+if 'videos' not in data['description']['en']:
   data['description']['en']['videos'] = []
+if 'awards' not in data['description']['en']:
   data['description']['en']['awards'] = []
 
 # Legal
