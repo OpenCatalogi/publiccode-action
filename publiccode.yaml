@@ -1,21 +1,25 @@
 categories:
 - it-development
 description:
-  en: {}
+  en:
+    genericName: This GitHub Action automatically generates and updates a publiccode.yaml
+      file in the root of your repository, based on repository metadata. The file
+      is updated each time a push is made to the main branch.
 developmentStatus: development
 landingURL: ''
 legal: []
 license: $REPO_LICENSE
 localisation: []
 maintenance: []
-name: $REPO_NAME
+name: publiccode-action
 nl:
   vng: []
 organisation:
-  description: $ORGANISATION_DESCRIPTION
-  logo: $ORGANISATION_AVATAR
-  name: $ORGANISATION_NAME
-  url: $ORGANISATION_URL
+  description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
+    \ de overheid"
+  logo: https://avatars.githubusercontent.com/u/106239067?v=4
+  name: OpenCatalogi
+  url: OpenCatalogi
 platforms:
 - web
 publiccodeYmlVersion: '0.2'
@@ -23,5 +27,5 @@ releaseDate: '2023-10-15'
 roadmap: ''
 softwareType: standalone/web
 softwareVersion: ''
-url: $REPO_HOMEPAGE
+url: https://github.com/OpenCatalogi/publiccode-action
 usedBy: []
