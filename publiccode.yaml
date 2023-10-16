@@ -22,7 +22,9 @@ localisation: []
 maintenance: []
 name: publiccode-action
 nl:
-  vng: []
+  vng:
+    commonground: []
+    gemma: []
 organisation:
   description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
     \ de overheid"
