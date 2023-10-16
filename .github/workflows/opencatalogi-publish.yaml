@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - feature/public-action
+      - feature/mark-debug
 
 jobs:
   check-and-update:
