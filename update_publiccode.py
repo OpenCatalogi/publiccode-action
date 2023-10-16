@@ -22,7 +22,20 @@ created_at_date = datetime.now().strftime('%Y-%m-%d')
 set_default(data, 'publiccodeYmlVersion', "0.2")
 set_default(data, 'name', "")
 set_default(data, 'url', "")
+set_default(data, 'landingURL', "")
+set_default(data, 'softwareVersion', "")
+set_default(data, 'releaseDate', created_at_date)
+set_default(data, 'platforms', ["web"])
+set_default(data, 'categories', ["it-development"])
+set_default(data, 'usedBy', [])
+set_default(data, 'roadmap', "")
+set_default(data, 'developmentStatus', "development")
+set_default(data, 'softwareType', "standalone/web")
 set_default(data, 'description', {'en': {}})
+set_default(data, 'legal', {})
+set_default(data, 'maintenance', {})
+set_default(data, 'localisation', {})
+set_default(data, 'nl', {'vng': {}})
 
 # Update or append values
 if os.environ.get('REPO_NAME'):
@@ -45,7 +58,7 @@ if os.environ.get('REPO_HOMEPAGE'):
 #     data['topics'] = os.environ['REPO_TOPICS'].split(',')
 
 if os.environ.get('REPO_LICENSE'):
-    data['license'] = os.environ['REPO_LICENSE']
+    data['legal']['license'] = os.environ['REPO_LICENSE']
 
 # Create or update nested 'organisation' array
 if 'organisation' not in data:
