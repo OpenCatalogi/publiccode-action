@@ -39,21 +39,19 @@ runs:
         python-version: '3.x'
     # Transfer the repossitory data to the container
     - name: Transfer the repossitory data to the container
-      run:
-        REPO_NAME="${{ github.event.repository.name }}"
-        REPO_DESC="${{ github.event.repository.description }}"
-        REPO_URL="${{ github.event.repository.html_url }}"
-        REPO_HOMEPAGE="${{ github.event.repository.homepage }}"
-        #REPO_TOPICS="${{ github.event.repository.topics }}"
-        REPO_LICENSE="${{ github.event.repository.license.key }}"
-        REPO_CREATED_AT="${{ github.event.repository.created_at }}"
-        
-        ORGANISATION_NAME="${{ github.event.organization.login }}"
-        ORGANISATION_DESCRIPTION="${{ github.event.organization.description }}"
-        ORGANISATION_GITID="${{ github.event.organization.id}}"
-        ORGANISATION_URL="${{ github.event.organization.login }}"
-        ORGANISATION_AVATAR="${{ github.event.organization.avatar_url }}"
-      
+      env:
+        REPO_NAME: ${{ github.event.repository.name }}
+        REPO_DESC: ${{ github.event.repository.description }}
+        REPO_URL: ${{ github.event.repository.html_url }}
+        REPO_HOMEPAGE: ${{ github.event.repository.homepage }}
+        REPO_LICENSE: ${{ github.event.repository.license.key }}
+        REPO_CREATED_AT: ${{ github.event.repository.created_at }}
+        ORGANISATION_NAME: ${{ github.event.organization.login }}
+        ORGANISATION_DESCRIPTION: ${{ github.event.organization.description }}
+        ORGANISATION_GITID: ${{ github.event.organization.id}}
+        ORGANISATION_URL: ${{ github.event.organization.login }}
+        ORGANISATION_AVATAR: ${{ github.event.organization.avatar_url }}
+      run: |
         echo "Installing PyYAML..."
         pip install PyYAML
 

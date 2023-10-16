@@ -1,0 +1,27 @@
+categories:
+- it-development
+description:
+  en: {}
+developmentStatus: development
+landingURL: ''
+legal: []
+license: $REPO_LICENSE
+localisation: []
+maintenance: []
+name: $REPO_NAME
+nl:
+  vng: []
+organisation:
+  description: $ORGANISATION_DESCRIPTION
+  logo: $ORGANISATION_AVATAR
+  name: $ORGANISATION_NAME
+  url: $ORGANISATION_URL
+platforms:
+- web
+publiccodeYmlVersion: '0.2'
+releaseDate: '2023-10-16'
+roadmap: ''
+softwareType: standalone/web
+softwareVersion: ''
+url: $REPO_HOMEPAGE
+usedBy: []
