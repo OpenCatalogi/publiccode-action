@@ -19,7 +19,7 @@ organisation:
 platforms:
 - web
 publiccodeYmlVersion: '0.2'
-releaseDate: '2023-10-16'
+releaseDate: '2023-10-15'
 roadmap: ''
 softwareType: standalone/web
 softwareVersion: ''
