@@ -2,6 +2,10 @@ name: 'Create or Update publiccode.yaml'
 author: 'Open Catalogi'
 description: 'Creates or updates the publiccode.yaml or publicorganisation.yml file with repository metadata'
 
+branding:
+  icon: 'file-plus'
+  color: 'blue'
+
 inputs:
   remoterepo:
     description: 'Git url of the remote repository you want to check'
@@ -102,6 +106,3 @@ runs:
           }
         }'
 
-branding:
-  icon: 'file'
-  color: 'blue'
