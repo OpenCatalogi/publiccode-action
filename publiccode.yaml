@@ -21,8 +21,7 @@ license: $REPO_LICENSE
 localisation: []
 maintenance: []
 name: publiccode-action
-nl:
-  vng: []
+
 organisation:
   description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
     \ de overheid"
