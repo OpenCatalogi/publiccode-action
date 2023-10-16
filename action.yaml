@@ -1,6 +1,6 @@
 name: 'Create or Update publiccode.yaml'
 author: 'Open Catalogi'
-description: 'Creates or updates the publiccode.yal or publicorganisation.yml file with repository metadata'
+description: 'Creates or updates the publiccode.yaml or publicorganisation.yml file with repository metadata'
 
 inputs:
   remoterepo:
