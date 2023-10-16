@@ -7,30 +7,64 @@ The Action works by running a Python script that reads repository metadata such 
 To use this action, simply include it as a step in your workflow file. No inputs are required.
 
 ````yaml
-steps:
-  - name: Update publiccode.yaml
-    uses: OpenCatalogi/publiccode-action@v1
-    env:
-      GITHUB_REPOSITORY: ${{ github.repository }}
-      REPO_DESCRIPTION: "This is a sample repository description"
-      ORGANISATION: "OpenAI"
-      TAGS: "ai, machine-learning"
-      WEBSITE: "https://openai.com"
-      LICENCE: "MIT"
+name: My PublicCode Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update publiccode.yaml
+        uses: OpenCatalogi/publiccode-action
 ````
-Note: Replace your-github-username with your actual GitHub username, and publiccode-update-action with the name of the repository where this action is hosted.
+
+In the above example a publiccode file is updated every time code on the `main` branche is touched
 
 ## Inputs
-None
+
+| Input Name   | Description                                                  | Default Value        |
+|--------------|--------------------------------------------------------------|-----------------------|
+| `name` | Git URL of the remote repository to check (Optional)         | Empty String          |
+| `description` | Git URL of the remote repository to check (Optional)         | Empty String          |
+| `remoterepo` | Git URL of the remote repository to check (Optional)         | Empty String          |
+| `publiccode` | `publiccode.yml` path (Optional), e.g. `data/publiccode.yml` | `publiccode.yml`      |
+| `gitname`    | Git name configuration for bump commit (Optional)            | `Open Catalogi bot`  |
+| `gitmail`    | Git mail configuration for bump commit (Optional)            | `bot@opencatalogi.nl` |
+
 
 ## Outputs
-None
+The following outputs are provided by the action and can be used by other aciotns 
+
+| Output Name    | Description                                     |
+|----------------|-------------------------------------------------|
+| `version`      | New version of the `softwareVersion` field     |
+| `releaseDate`  | New release date of the `releaseDate` field   |
+
+## Example
+To use this action, simply include it as a step in your workflow file. No inputs are required.
+
+````yaml
+steps:
+  - name: Update publiccode.yaml
+    uses: OpenCatalogi/publiccode-action
+    with:
+      name: "My Codebase"
+      description: "This is a sample repository description"
+      publiccode: "publiccode.yml"
+      gitname: "Open Catalogi bot"
+      gitmail: "bot@opencatalogi.nl"
+````
+Note: Replace your-github-username with your actual GitHub username, and publiccode-update-action with the name of the repository where this action is hosted.
 
 ## Architecture
 ### Why python?
 Python is nativly supported by github actions underlaying containers and therefore very quick
 
 ### Asumptions
-We follow the "get data from teh source" princple
+We follow the "get data from the source" principle, in practice for this action that means that we se the repository as the source. So any settings in the repository (e.g. name and description) will overwrite the values already pressent in your publiccode.
 
 Please note that this action does not handle errors or exceptions while reading metadata or writing to publiccode.yaml. You should ensure that your repository is properly set up to avoid any issues. For example, make sure that your repository name and description are not empty.
