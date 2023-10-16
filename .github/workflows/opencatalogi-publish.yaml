@@ -1,6 +1,7 @@
 name: PublicCode and PublicOrganization Check and Update
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
