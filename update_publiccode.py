@@ -1,151 +1,84 @@
-# .github/scripts/update_publiccode.py
-
+import os
 import yaml
-import json
 from datetime import datetime
+
+def set_default(d, key, default_value):
+    if not isinstance(d, dict):
+        return
+    if key not in d:
+        d[key] = default_value
 
 # Read existing publiccode.yaml
 try:
-  with open("publiccode.yaml", "r") as f:
-      data = yaml.safe_load(f)
+    with open("publiccode.yaml", "r") as f:
+        data = yaml.safe_load(f)
 except FileNotFoundError:
-  data = {}
+    data = {}
 
 # Convert created_at to date format
-# created_at_date = datetime.fromisoformat("$REPO_CREATED_AT".replace("Z", "+00:00")).strftime('%Y-%m-%d')
 created_at_date = datetime.now().strftime('%Y-%m-%d')
 
-# Convert topics JSON string to Python list and then to comma-separated string
-
-################################################
-# Creating a publiccode array if it is missing #
-################################################
-
-# Lets see if we have an nice exmple publiccode and values if they are missing
-if 'publiccodeYmlVersion' not in data:
-  data['publiccodeYmlVersion'] = "0.2"
-if 'name' not in data:
-  data['name'] = ""
-if 'url' not in data:
-  data['url'] = ""
-if 'landingURL' not in data:
-  data['landingURL'] = ""
-if 'softwareVersion' not in data:
-  data['softwareVersion'] = ""
-if 'releaseDate' not in data:
-  data['releaseDate'] = created_at_date
-if 'platforms' not in data:
-  data['platforms'] = ["web"]
-if 'categories' not in data:
-  data['categories'] = ["it-development"]
-if 'usedBy' not in data:
-  data['usedBy'] = []
-if 'roadmap' not in data:
-  data['roadmap'] = ""
-if 'developmentStatus' not in data:
-  data['developmentStatus'] = "development"
-if 'softwareType' not in data:
-  data['softwareType'] = "standalone/web"
-
-# Description
-if 'description' not in data:
-  data['description'] = {"en":[]}
-if 'en' not in data['description']:
-  data['description']['en'] = {}
-if 'nl' not in data['description']: #this is just to point out that an NL version is wanted
-  data['description']['nl'] = {}
-if 'localisedName' not in data['description']['en']:
-  data['description']['en']['localisedName'] = ""
-if 'genericName' not in data['description']['en']:
-  data['description']['en']['genericName'] = ""
-if 'shortDescription' not in data['description']['en']:
-  data['description']['en']['shortDescription'] = ""
-if 'longDescription' not in data['description']['en']:
-  data['description']['en']['longDescription'] =""
-if 'documentation' not in data['description']['en']:
-  data['description']['en']['documentation'] = ""
-if 'apiDocumentation' not in data['description']['en']:
-  data['description']['en']['apiDocumentation'] = ""
-if 'features' not in data['description']['en']:
-  data['description']['en']['features'] = []
-if 'screenshots' not in data['description']['en']:
-  data['description']['en']['screenshots'] = []
-if 'videos' not in data['description']['en']:
-  data['description']['en']['videos'] = []
-if 'awards' not in data['description']['en']:
-  data['description']['en']['awards'] = []
-
-# Legal
-if 'legal' not in data:
-  data['legal'] = []
-if 'license' not in data['legal']:
-  data['legal']['license'] = ""
-if 'mainCopyrightOwner' not in data['legal']:
-  data['legal']['mainCopyrightOwner'] = ""
-if 'repoOwner' not in data['legal']:
-  data['legal']['repoOwner'] = ""
-if 'authorsFile' not in data['legal']:
-  data['legal']['authorsFile'] = ""
-
-# Maintenance
-if 'maintenance' not in data:
-  data['maintenance'] = []
-if 'type' not in data['maintenance']:
-  data['maintenance']['type'] = "none"
-if 'contractors' not in data['maintenance']:
-  data['maintenance']['contractors'] = []
-if 'contacts' not in data['maintenance']:
-  data['maintenance']['contacts'] = []
-
-# Localisation
-if 'localisation' not in data:
-  data['localisation'] = []
-if 'localisationReady' not in data['localisation']:
-  data['localisation']['localisationReady'] = false
-if 'availableLanguages' not in data['localisation']:
-  data['localisation']['availableLanguages'] = ["en"]
-
-# NL Specific
-if 'nl' not in data:
-  data['nl'] = []
-## Lets do GEMMA and Commen Ground
-if 'vng' not in data['nl']:
-  data['nl']['vng'] = []
-if 'gemma' not in data['nl']['vng']:
-  data['nl']['vng']['gemma'] = []
-if 'commenground' not in data['nl']['vng']:
-  data['nl']['vng']['commenground'] = []
-
-###########################################
-# Updating the values from the repository #
-###########################################
+# Initialize missing keys with default values
+set_default(data, 'publiccodeYmlVersion', "0.2")
+set_default(data, 'name', "")
+set_default(data, 'url', "")
+set_default(data, 'landingURL', "")
+set_default(data, 'softwareVersion', "")
+set_default(data, 'releaseDate', created_at_date)
+set_default(data, 'platforms', ["web"])
+set_default(data, 'categories', ["it-development"])
+set_default(data, 'usedBy', [])
+set_default(data, 'roadmap', "")
+set_default(data, 'developmentStatus', "development")
+set_default(data, 'softwareType', "standalone/web")
+set_default(data, 'description', {'en': {}})
+set_default(data['description']['en'], 'localisedName', "")
+set_default(data['description']['en'], 'genericName', "")
+set_default(data['description']['en'], 'shortDescription', "")
+set_default(data['description']['en'], 'longDescription', "")
+set_default(data['description']['en'], 'documentation', "")
+set_default(data['description']['en'], 'apiDocumentation', "")
+set_default(data['description']['en'], 'features', [])
+set_default(data['description']['en'], 'screenshots', [])
+set_default(data['description']['en'], 'videos', [])
+set_default(data['description']['en'], 'awards', [])
+set_default(data, 'nl', {'vng': {}})
+set_default(data['nl']['vng'], 'gemma', [])
+set_default(data['nl']['vng'], 'commonground', [])
+set_default(data, 'legal', {})
+set_default(data['legal'], 'license', "")
+set_default(data['legal'], 'mainCopyrightOwner', "")
+set_default(data['legal'], 'repoOwner', "")
+set_default(data['legal'], 'authorsFile', "")
+set_default(data, 'maintenance', {})
+set_default(data['maintenance'], 'type', "none")
+set_default(data['maintenance'], 'contractors', [])
+set_default(data['maintenance'], 'contacts', [])
+set_default(data, 'localisation', {})
+set_default(data['localisation'], 'localisationReady', False)
+set_default(data['localisation'], 'availableLanguages', ["en"])
+set_default(data, 'organisation', {})
 
 # Update or append values
-if "$REPO_NAME" != "null" and "$REPO_NAME":
-  data['name'] = "$REPO_NAME"
-if "$REPO_URL" != "null" and "$REPO_URL":
-  data['url'] = "$REPO_URL"
-if "$REPO_DESC" != "null" and "$REPO_DESC":
-  data['description'] = "$REPO_DESC"
-if "$REPO_HOMEPAGE" != "null" and "$REPO_HOMEPAGE":
-  data['url'] = "$REPO_HOMEPAGE"
-#if "$REPO_TOPICS" != "null" and "$REPO_TOPICS":
-#    data['topics'] = "$REPO_TOPICS"
-if "$REPO_LICENSE" != "null" and "$REPO_LICENSE":
-  data['license'] = "$REPO_LICENSE"
-
-# Create or update nested 'organisation' array
-if 'organisation' not in data:
-  data['organisation'] = {}
-if "$ORGANISATION_NAME" != "null" and "$ORGANISATION_NAME":
-  data['organisation']['name'] = "$ORGANISATION_NAME"
-if "$ORGANISATION_AVATAR" != "null" and "$ORGANISATION_AVATAR":
-  data['organisation']['logo'] = "$ORGANISATION_AVATAR"
-if "$ORGANISATION_URL" != "null" and "$ORGANISATION_URL":
-  data['organisation']['url'] = "$ORGANISATION_URL"
-if "$ORGANISATION_DESCRIPTION" != "null" and "$ORGANISATION_DESCRIPTION":
-  data['organisation']['description'] = "$ORGANISATION_DESCRIPTION"
+if os.environ.get('REPO_NAME'):
+    data['name'] = os.environ['REPO_NAME']
+if os.environ.get('REPO_URL'):
+    data['url'] = os.environ['REPO_URL']
+if os.environ.get('REPO_DESC'):
+    data['description']['en']['genericName'] = os.environ['REPO_DESC']
+if os.environ.get('REPO_HOMEPAGE'):
+    data['url'] = os.environ['REPO_HOMEPAGE']
+if os.environ.get('REPO_LICENSE'):
+    data['legal']['license'] = os.environ['REPO_LICENSE']
+if os.environ.get('ORGANISATION_NAME'):
+    data['organisation']['name'] = os.environ['ORGANISATION_NAME']
+if os.environ.get('ORGANISATION_AVATAR'):
+    data['organisation']['logo'] = os.environ['ORGANISATION_AVATAR']
+if os.environ.get('ORGANISATION_URL'):
+    data['organisation']['url'] = os.environ['ORGANISATION_URL']
+if os.environ.get('ORGANISATION_DESCRIPTION'):
+    data['organisation']['description'] = os.environ['ORGANISATION_DESCRIPTION']
 
 # Write updated publiccode.yaml
 with open("publiccode.yaml", "w") as f:
-  yaml.safe_dump(data, f)
+    yaml.safe_dump(data, f)

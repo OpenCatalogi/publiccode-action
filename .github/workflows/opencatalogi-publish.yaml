@@ -1,10 +1,12 @@
 name: PublicCode and PublicOrganization Check and Update
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
       - feature/public-action
+      - feature/mark-debug
 
 jobs:
   check-and-update:
@@ -20,21 +22,21 @@ jobs:
       # Transfer the repossitory data to the container
       - name: Transfer the repossitory data to the container
         run: |
-          REPO_NAME="${{ github.event.repository.name }}"
-          REPO_DESC="${{ github.event.repository.description }}"
-          REPO_URL="${{ github.event.repository.html_url }}"
-          REPO_HOMEPAGE="${{ github.event.repository.homepage }}"
-          REPO_LICENSE="${{ github.event.repository.license.key }}"
-          REPO_CREATED_AT="${{ github.event.repository.created_at }}" 
+          echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "REPO_DESC=${{ github.event.repository.description }}" >> $GITHUB_ENV
+          echo "REPO_URL=${{ github.event.repository.html_url }}" >> $GITHUB_ENV
+          echo "REPO_HOMEPAGE=${{ github.event.repository.homepage }}" >> $GITHUB_ENV
+          echo "REPO_LICENSE=${{ github.event.repository.license.key }}" >> $GITHUB_ENV
+          echo "REPO_CREATED_AT=${{ github.event.repository.created_at }}" >> $GITHUB_ENV
           
-          ORGANISATION_NAME="${{ github.event.organization.login }}"
-          ORGANISATION_DESCRIPTION="${{ github.event.organization.description }}"
-          ORGANISATION_GITID="${{ github.event.organization.id}}"
-          ORGANISATION_URL="${{ github.event.organization.login }}"
-          ORGANISATION_AVATAR="${{ github.event.organization.avatar_url }}"
-        
-          echo "Installing PyYAML..."
-          pip install PyYAML
+          echo "ORGANISATION_NAME=${{ github.event.organization.login }}" >> $GITHUB_ENV
+          echo "ORGANISATION_DESCRIPTION=${{ github.event.organization.description }}" >> $GITHUB_ENV
+          echo "ORGANISATION_GITID=${{ github.event.organization.id}}" >> $GITHUB_ENV
+          echo "ORGANISATION_URL=${{ github.event.organization.login }}" >> $GITHUB_ENV
+          echo "ORGANISATION_AVATAR=${{ github.event.organization.avatar_url }}" >> $GITHUB_ENV
+          
+            echo "Installing PyYAML..."
+            pip install PyYAML
           
 
       # Bit of test coding to see if everything works
