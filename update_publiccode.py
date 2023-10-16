@@ -3,6 +3,8 @@ import yaml
 from datetime import datetime
 
 def set_default(d, key, default_value):
+    if not isinstance(d, dict):
+        return
     if key not in d:
         d[key] = default_value
 
