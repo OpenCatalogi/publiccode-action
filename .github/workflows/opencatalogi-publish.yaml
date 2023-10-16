@@ -12,6 +12,7 @@ jobs:
   check-and-update:
     runs-on: ubuntu-latest
     steps:
+      # Check out the code
       - name: Checkout code
         uses: actions/checkout@v2
       # Install Python
@@ -37,16 +38,6 @@ jobs:
           
             echo "Installing PyYAML..."
             pip install PyYAML
-          
-
-      # Bit of test coding to see if everything works
-      - run: echo Hello ${{ inputs.who-to-greet }}.
-        shell: bash
-      - id: random-number-generator
-        run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-        shell: bash
-      - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-        shell: bash
         # Create changes  if it is a normal repository
       - name: Create or update the publiccode file
         if: (!contains(github.repository, '.github'))
