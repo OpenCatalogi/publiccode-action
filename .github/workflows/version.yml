@@ -1,0 +1,46 @@
+# .github/workflows/version.yml
+name: Git Version
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release-managment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+
+      #Based on https://github.com/marketplace/actions/git-version
+      - name: Git Version
+        id: version
+        uses: codacy/git-version@2.7.1
+        with:
+          release-branch: master
+          dev-branch: development
+
+      - name: Use the version
+        run: |
+          echo ${{ steps.version.outputs.version }}
+      #https://github.com/marketplace/actions/zip-release
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          exclusions: '*.git* /*node_modules/* .editorconfig'
+      #https://github.com/marvinpinto/action-automatic-releases
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ steps.version.outputs.version }}
+          prerelease: false
+          title: "Release ${{ steps.version.outputs.version }}"
+          files: |
+            LICENSE.md
+            release.zip

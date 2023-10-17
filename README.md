@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action
+        uses: OpenCatalogi/publiccode-action@latest
 ````
 
 In the above example a publiccode file is updated every time code on the `main` branche is touched
@@ -28,7 +28,7 @@ In the above example a publiccode file is updated every time code on the `main` 
 
 | Input Name   | Description                                                  | Default Value        |
 |--------------|--------------------------------------------------------------|-----------------------|
-| `name` | Git URL of the remote repository to check (Optional)         | Empty String          |
+| `name` | Git URL of the remote repository to check (Optional)         | {{ github.event.repository.name }}"         |
 | `description` | Git URL of the remote repository to check (Optional)         | Empty String          |
 | `remoterepo` | Git URL of the remote repository to check (Optional)         | Empty String          |
 | `publiccode` | `publiccode.yml` path (Optional), e.g. `data/publiccode.yml` | `publiccode.yml`      |

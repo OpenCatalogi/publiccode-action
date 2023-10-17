@@ -7,7 +7,7 @@ branding:
   color: 'blue'
 
 inputs:
-  remoterepo:
+  repository:
     description: 'Git url of the remote repository you want to check'
     required: false
     default: ''
@@ -57,8 +57,8 @@ runs:
         echo "ORGANISATION_URL=${{ github.event.organization.login }}" >> $GITHUB_ENV
         echo "ORGANISATION_AVATAR=${{ github.event.organization.avatar_url }}" >> $GITHUB_ENV
 
-          echo "Installing PyYAML..."
-          pip install PyYAML
+        echo "Installing PyYAML..."
+        pip install PyYAML
       # Create changes  if it is a normal repository
     - name: Create or update the publiccode file
       if: (!contains(github.repository, '.github'))
