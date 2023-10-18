@@ -24,6 +24,14 @@ jobs:
 
 In the above example a `publiccode` file is updated every time code on the `main` branche is touched
 
+> **Warning**
+> If you do not supply the action with an access token or an SSH key, you must access your repositories settings and provide `Read and Write Permissions` to the provided `GITHUB_TOKEN`, otherwise you'll potentially run into permission issues. Alternatively you can set the following in your workflow file to grant the action the permissions it needs.
+
+```yml
+permissions:
+  contents: write
+```
+
 ## Inputs
 
 | Input Name   | Description                                                  | Default Value        |
