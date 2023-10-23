@@ -23,7 +23,7 @@ jobs:
         id: version
         uses: codacy/git-version@2.7.1
         with:
-          release-branch: master
+          release-branch: main
           dev-branch: development
 
       - name: Use the version
