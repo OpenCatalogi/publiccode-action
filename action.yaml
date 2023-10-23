@@ -174,10 +174,19 @@ runs:
         except FileNotFoundError:
           data = {}
         
-        # Convert created_at to date format
+        # Convert created_at to date format        
         created_at_date = datetime.now().strftime('%Y-%m-%d')
         
-        
+        # Initialize missing keys with default values
+        set_default(data, 'publiccodeYmlVersion', "0.2")
+        set_default(data, 'name', "")
+        set_default(data, 'website', "")
+        set_default(data, 'contact', {})
+        set_default(data['contact'], 'email', "")
+        set_default(data['contact'], 'phone', "")
+        set_default(data, 'softwareOwned', []])
+        set_default(data, 'softwareUsed', []])
+        set_default(data, 'softwareSupported', []])                
         
         # Write updated opencatalogi.yaml
         with open("opencatalogi.yaml", "w") as f:
@@ -201,7 +210,7 @@ runs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add publicorganisation.yaml
+        git add opencatalogi.yaml
         git commit -m "${{ github.workflow }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API

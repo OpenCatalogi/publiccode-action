@@ -52,6 +52,7 @@ The following outputs are provided by the action and can be used by other action
 | `version`      | New version of the `softwareVersion` field     |
 | `releaseDate`  | New release date of the `releaseDate` field   |
 
+
 ## Example
 To use this action, simply include it as a step in your workflow file. No inputs are required.
 
@@ -68,6 +69,29 @@ steps:
 ````
 Note: Replace `your-github-username` with your actual GitHub username, and `publiccode-update-action` with the name of the repository where this action is hosted.
 
+## Tips
+Need a quick way to present your project online but don't have the time te create a dedicated website? Combine the publiccode code actions with the product page action to get an instant website for you project.
+
+````yaml
+name: My PublicCode Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update publiccode.yaml
+        uses: OpenCatalogi/publiccode-action@1
+      - name: Deploy Product Github Page
+        uses: OpenCatalogi/productpage-action@1
+````
+
+[Read more](https://github.com/marketplace/actions/create-an-product-page) about the product  page action 
+
 ## Architecture
 ### Why Python?
 Python is natively supported by GitHub actions' underlaying containers and therefore very quick
@@ -76,3 +100,14 @@ Python is natively supported by GitHub actions' underlaying containers and there
 We follow the "get data from the source" principle, in practice for this action that means that we set the repository as the source. So any settings in the repository (e.g. name and description) will overwrite the values already pressent in your publiccode.
 
 Please note that this action does not handle errors or exceptions while reading metadata or writing to publiccode.yaml. You should ensure that your repository is properly set up to avoid any issues. For example, make sure that your repository name and description are not empty.
+
+## Maintainers
+This software is maintained by [Conduction b.v.](https://conduction.nl/)
+
+## License
+© 2023 Conduction B.V.
+
+Licensed under the EUPL. The version control system provides attribution for specific lines of code.
+
+## Remarks
+This GitHub Action is published in the GitHub Marketplace. As such, you can find the [Terms of Service here](). Also, [here]() you can find the GitHub Marketplace Developer Agreement.
