@@ -10,18 +10,27 @@ inputs:
   repository:
     description: 'Git url of the remote repository you want to check'
     required: false
+    type: string
     default: ''
-  publiccode:
-    description: 'publiccode.yml path'
+  path:
+    description: 'publiccode.yaml path'
     required: false
-    default: 'publiccode.yml'
+    type: string
+    default: 'publiccode.yaml'
+  opencatalogi:
+    description: 'publiccode.yaml path'
+    required: false
+    type: boolean
+    default: false
   gitname:
     description: 'Git name configuration for bump commit'
     required: false
+    type: string
     default: 'Open Catalogi bot'
   gitmail:
     description: 'Git mail configuration for bump commit'
     required: false
+    type: string
     default: 'bot@opencatalogi.nl'
 
 outputs:
