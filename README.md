@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@latest
+        uses: OpenCatalogi/publiccode-action@1
 ````
 
 In the above example a `publiccode` file is updated every time code on the `main` branche is touched
