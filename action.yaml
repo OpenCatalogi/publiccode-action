@@ -190,7 +190,7 @@ runs:
         support = []
 
         for repository in repositoryUrls:
-          support.append = {"software": repository, "type": "community"}
+          support.append({"software": repository, "type": "community"})
         
         # Read existing opencatalogi.yaml
         try:
