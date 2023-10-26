@@ -72,7 +72,7 @@ runs:
         echo "ORGANISATION_URL=${{ github.event.organization.login }}" >> $GITHUB_ENV
         echo "ORGANISATION_AVATAR=${{ github.event.organization.avatar_url }}" >> $GITHUB_ENV
         
-        echo "ORGANIZATION_REPOS=${{ steps.get-repos.outputs.repos }} >> $GITHUB_ENV
+        echo "ORGANIZATION_REPOS=${{ steps.get-repos.outputs.repos }}" >> $GITHUB_ENV
 
         echo "Installing PyYAML..."
         pip install PyYAML
