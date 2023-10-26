@@ -176,6 +176,7 @@ runs:
         import os
         import yaml
         import json
+        import copy
         from datetime import datetime
         
         def set_default(d, key, default_value):
@@ -209,8 +210,8 @@ runs:
         set_default(data, 'contact', {})
         set_default(data['contact'], 'email', "")
         set_default(data['contact'], 'phone', "")
-        set_default(data, 'softwareOwned', repositoryUrls)
-        set_default(data, 'softwareUsed', repositoryUrls)
+        set_default(data, 'softwareOwned', copy.copy(repositoryUrls))
+        set_default(data, 'softwareUsed', copy.copy(repositoryUrls))
         set_default(data, 'softwareSupported', support)                
         
         # Write updated opencatalogi.yaml
