@@ -240,14 +240,14 @@ runs:
         git commit -m "${{ github.workflow }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API
-#    - name: Post Repository URL to OpenCatalogi API
-#      shell: bash
-#      run: |
-#        curl -X POST "https://api.opencatalogi.nl/api/github_events" \
-#        -H "Content-Type: application/json" \
-#        -d '{
-#          "repository": {
-#            "html_url": "'${{ github.event.repository.html_url }}'"
-#          }
-#        }'
+    - name: Post Repository URL to OpenCatalogi API
+      shell: bash
+      run: |
+        curl -X POST "https://api.opencatalogi.nl/api/github_events" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "repository": {
+            "html_url": "'${{ github.event.repository.html_url }}'"
+          }
+        }'
 
