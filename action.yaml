@@ -212,7 +212,8 @@ runs:
         set_default(data['contact'], 'phone', "")
         set_default(data, 'softwareOwned', copy.copy(repositoryUrls))
         set_default(data, 'softwareUsed', copy.copy(repositoryUrls))
-        set_default(data, 'softwareSupported', support)                
+        set_default(data, 'softwareSupported', support)
+        set_default(data, 'relatedOrganizations', [])                
         
         # Write updated opencatalogi.yaml
         with open("opencatalogi.yaml", "w") as f:
