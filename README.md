@@ -43,6 +43,29 @@ permissions:
 | `gitname`    | Git name configuration for bump commit (Optional)            | `Open Catalogi bot`  |
 | `gitmail`    | Git mail configuration for bump commit (Optional)            | `bot@opencatalogi.nl` |
 
+example ussage of the inputs
+
+````yaml
+name: My PublicCode Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update publiccode.yaml
+        uses: OpenCatalogi/publiccode-action@1
+        with:
+          name: ${{ github.head_ref }}   # Git URL of the remote repository to check
+          description: ${{ github.head_ref }}   # Git URL of the remote repository to check
+          publiccode: docs/publiccode.yam   #  `publiccode.yml` path
+          gitname:  bot myorganisation   # Git name configuration for bump commit
+          gitmail: info@myorganisation.com   # Git mail configuration for bump commit
+````
 
 ## Outputs
 The following outputs are provided by the action and can be used by other actions. 

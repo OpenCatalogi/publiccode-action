@@ -18,20 +18,26 @@ inputs:
     type: string
     default: 'publiccode.yaml'
   opencatalogi:
-    description: 'publiccode.yaml path'
+    description: 'create an opencatalogi file instead of a publiccode'
     required: false
     type: boolean
     default: false
-  gitname:
-    description: 'Git name configuration for bump commit'
+  # git configuration
+  git-name:
+    description: 'Git name configuration for the commit'
     required: false
     type: string
     default: 'Open Catalogi bot'
-  gitmail:
-    description: 'Git mail configuration for bump commit'
+  git-mail:
+    description: 'Git mail configuration for the commit'
     required: false
     type: string
     default: 'bot@opencatalogi.nl'
+  git-commit-message:
+    description: 'The description for the  commit'
+    required: false
+    type: string
+    default: ${{ github.event.repository.html_url }}
 
 outputs:
   version:
@@ -224,20 +230,22 @@ runs:
       if: (!contains(github.repository, '.github'))
       shell: bash
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "${{ inputs.git-mail }}"
+        git config --local user.name "${{ inputs.git-name }}"
+        git pull
         git add publiccode.yaml
-        git commit -m "${{ github.workflow }}" || echo "No changes to commit"
+        git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
         git push
     # Commit changes if it is an organisation repository
     - name: Commit changes
       if: (contains(github.repository, '.github'))
       shell: bash
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "${{ inputs.git-mail }}"
+        git config --local user.name "${{ inputs.git-name }}"
+        git pull
         git add opencatalogi.yaml
-        git commit -m "${{ github.workflow }}" || echo "No changes to commit"
+        git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API
     - name: Post Repository URL to OpenCatalogi API
