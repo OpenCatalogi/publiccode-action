@@ -44,5 +44,6 @@ jobs:
           prerelease: false
           title: "Release ${{ steps.version.outputs.version }}"
           files: |
+            action.yaml
             LICENSE.md
             release.zip
