@@ -14,7 +14,7 @@ description:
     screenshots: []
     shortDescription: ''
     videos: []
-developmentStatus: development
+developmentStatus: stable
 landingURL: ''
 legal:
   authorsFile: ''
@@ -32,7 +32,8 @@ maintenance:
 name: publiccode-action
 nl:
   vng:
-    commonground: []
+    commonground:
+      layerType: process
     gemma: []
 organisation:
   description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
