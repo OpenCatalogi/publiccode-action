@@ -99,11 +99,21 @@ runs:
             d[key] = default_value
         
         # Read existing publiccode.yaml
+        filename = "publiccode.yaml"
+        
         try:
-          with open("publiccode.yaml", "r") as f:
+          with open(filename, "r") as f:
             data = yaml.safe_load(f)
         except FileNotFoundError:
           data = {}
+        
+        if(data === {}) 
+          try:
+            with open("publiccode.yml", "r" as f:
+              data = yaml.safe_load(f)
+              filename = "publiccode.yml"
+           except FileNotFoundError:
+              data = data
         
         # Convert created_at to date format
         created_at_date = datetime.now().strftime('%Y-%m-%d')
@@ -170,7 +180,7 @@ runs:
           data['organisation']['description'] = os.environ['ORGANISATION_DESCRIPTION']
         
         # Write updated publiccode.yaml
-        with open("publiccode.yaml", "w") as f:
+        with open(filename, "w") as f:
             yaml.safe_dump(data, f)
         END
       # Create changes  if it is an organisation repository
@@ -200,11 +210,37 @@ runs:
           support.append({"software": repository, "type": "community"})
         
         # Read existing opencatalogi.yaml
+        filename = "opencatalogi.yaml"
+        
         try:
-          with open("opencatalogi.yaml", "r") as f:
+          with open(filename, "r") as f:
             data = yaml.safe_load(f)
         except FileNotFoundError:
           data = {}
+
+        if(data === {})
+          try:
+            with open("openCatalogi.yaml", "r") as f:
+              data = yaml.safe_load(f)
+              filename = "openCatalogi.yaml"
+            except FileNotFoundError:
+              data = data
+
+        if(data === {})
+          try:
+            with open("opencatalogi.yml", "r") as f:
+              data = yaml.safe_load(f)
+              filename = "opencatalogi.yml"
+            except FileNotFoundError:
+              data = data
+        
+        if(data === {})
+          try:
+            with open("openCatalogi.yml", "r") as f:
+              data = yaml.safe_load(f)
+              filename = "openCatalogi.yml"
+            except FileNotFoundError:
+              data = data
         
         # Convert created_at to date format        
         created_at_date = datetime.now().strftime('%Y-%m-%d')
@@ -221,7 +257,7 @@ runs:
         set_default(data, 'softwareSupported', support)                
         
         # Write updated opencatalogi.yaml
-        with open("opencatalogi.yaml", "w") as f:
+        with open(filename, "w") as f:
             yaml.safe_dump(data, f)
         END
 
