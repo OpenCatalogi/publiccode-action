@@ -107,7 +107,7 @@ runs:
         except FileNotFoundError:
           data = {}
         
-        if(data === {}) 
+        if(data == {}) 
           try:
             with open("publiccode.yml", "r" as f:
               data = yaml.safe_load(f)
@@ -218,7 +218,7 @@ runs:
         except FileNotFoundError:
           data = {}
 
-        if(data === {})
+        if(data == {})
           try:
             with open("openCatalogi.yaml", "r") as f:
               data = yaml.safe_load(f)
@@ -226,7 +226,7 @@ runs:
             except FileNotFoundError:
               data = data
 
-        if(data === {})
+        if(data == {})
           try:
             with open("opencatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
@@ -234,7 +234,7 @@ runs:
             except FileNotFoundError:
               data = data
         
-        if(data === {})
+        if(data == {})
           try:
             with open("openCatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
