@@ -269,7 +269,7 @@ runs:
         git config --local user.email "${{ inputs.git-mail }}"
         git config --local user.name "${{ inputs.git-name }}"
         git pull
-        git add publiccode.yaml
+        git add publiccode.y*ml
         git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
         git push
     # Commit changes if it is an organisation repository
@@ -280,7 +280,7 @@ runs:
         git config --local user.email "${{ inputs.git-mail }}"
         git config --local user.name "${{ inputs.git-name }}"
         git pull
-        git add opencatalogi.yaml
+        git add open*atalogi.y*ml
         git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API
