@@ -112,7 +112,7 @@ runs:
             with open("publiccode.yml", "r" as f:
               data = yaml.safe_load(f)
               filename = "publiccode.yml"
-           except FileNotFoundError:
+            except FileNotFoundError:
               data = data
         
         # Convert created_at to date format
