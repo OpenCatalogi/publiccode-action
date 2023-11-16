@@ -112,7 +112,7 @@ runs:
             with open("publiccode.yml", "r" as f:
               data = yaml.safe_load(f)
               filename = "publiccode.yml"
-            except FileNotFoundError:
+          except FileNotFoundError:
               data = data
         
         # Convert created_at to date format
@@ -223,7 +223,7 @@ runs:
             with open("openCatalogi.yaml", "r") as f:
               data = yaml.safe_load(f)
               filename = "openCatalogi.yaml"
-            except FileNotFoundError:
+          except FileNotFoundError:
               data = data
 
         if(data == {}):
@@ -231,7 +231,7 @@ runs:
             with open("opencatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
               filename = "opencatalogi.yml"
-            except FileNotFoundError:
+          except FileNotFoundError:
               data = data
         
         if(data == {}):
@@ -239,7 +239,7 @@ runs:
             with open("openCatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
               filename = "openCatalogi.yml"
-            except FileNotFoundError:
+          except FileNotFoundError:
               data = data
         
         # Convert created_at to date format        
