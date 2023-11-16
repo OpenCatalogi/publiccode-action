@@ -107,7 +107,7 @@ runs:
         except FileNotFoundError:
           data = {}
         
-        if(data == {}) 
+        if(data == {}): 
           try:
             with open("publiccode.yml", "r" as f:
               data = yaml.safe_load(f)
@@ -218,7 +218,7 @@ runs:
         except FileNotFoundError:
           data = {}
 
-        if(data == {})
+        if(data == {}):
           try:
             with open("openCatalogi.yaml", "r") as f:
               data = yaml.safe_load(f)
@@ -226,7 +226,7 @@ runs:
             except FileNotFoundError:
               data = data
 
-        if(data == {})
+        if(data == {}):
           try:
             with open("opencatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
@@ -234,7 +234,7 @@ runs:
             except FileNotFoundError:
               data = data
         
-        if(data == {})
+        if(data == {}):
           try:
             with open("openCatalogi.yml", "r") as f:
               data = yaml.safe_load(f)
@@ -284,14 +284,14 @@ runs:
         git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API
-    - name: Post Repository URL to OpenCatalogi API
-      shell: bash
-      run: |
-        curl -X POST "https://api.opencatalogi.nl/api/github_events" \
-        -H "Content-Type: application/json" \
-        -d '{
-          "repository": {
-            "html_url": "'${{ github.event.repository.html_url }}'"
-          }
-        }'
+#    - name: Post Repository URL to OpenCatalogi API
+#      shell: bash
+#      run: |
+#        curl -X POST "https://api.opencatalogi.nl/api/github_events" \
+#        -H "Content-Type: application/json" \
+#        -d '{
+#          "repository": {
+#            "html_url": "'${{ github.event.repository.html_url }}'"
+#          }
+#        }'
 
