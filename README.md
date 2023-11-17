@@ -9,6 +9,9 @@ To use this action, simply include it as a step in your workflow file. No inputs
 ````yaml
 name: My PublicCode Workflow
 
+permissions:
+  contents: write
+  
 on:
   push:
     branches:
@@ -24,13 +27,8 @@ jobs:
 
 In the above example a `publiccode` file is updated every time code on the `main` branche is touched
 
-> **Warning**
-> If you do not supply the action with an access token or an SSH key, you must access your repositories settings and provide `Read and Write Permissions` to the provided `GITHUB_TOKEN`, otherwise you'll potentially run into permission issues. Alternatively you can set the following in your workflow file to grant the action the permissions it needs.
-
-```yml
-permissions:
-  contents: write
-```
+> **Info**
+> Alternatively to setting the write permission for the workflow, you can also supply the action with an access token or an SSH key; see inputs for more details.
 
 ## Inputs
 
@@ -48,6 +46,9 @@ example ussage of the inputs
 ````yaml
 name: My PublicCode Workflow
 
+permissions:
+  contents: write
+  
 on:
   push:
     branches:
@@ -98,6 +99,9 @@ Need a quick way to present your project online but don't have the time te creat
 ````yaml
 name: My PublicCode Workflow
 
+permissions:
+  contents: write
+  
 on:
   push:
     branches:
@@ -110,7 +114,7 @@ jobs:
       - name: Update publiccode.yaml
         uses: OpenCatalogi/publiccode-action@1.2.1
       - name: Deploy Product Github Page
-        uses: OpenCatalogi/productpage-action@1
+        uses: OpenCatalogi/productpage-action@1.0.0
 ````
 
 [Read more](https://github.com/marketplace/actions/create-an-product-page) about the product  page action 
