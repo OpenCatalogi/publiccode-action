@@ -30,16 +30,26 @@ In the above example a `publiccode` file is updated every time code on the `main
 > **Info**
 > Alternatively to setting the write permission for the workflow, you can also supply the action with an access token or an SSH key; see inputs for more details.
 
+## Working with protected branches
+It is common (and good) practise to protect the main branche of a repository from direct file editing and only allowing this trough pull requests. This will however couse the action (and workflow containing it) to fail becouse the workflow won't have the rights to actually write or create the resulting publiccode or opencatalogi files to the repository.
+
+The sollution here is two run the action two time's
+1- Once on the protected branche with the setting `save` set on false to prevent actual file creation or allteration
+2- Once on a branche where files may actually be added without a pull request (normally dev or development) setting `federlize` set on false to prevent unnececcery upates to the network
+
+
 ## Inputs
 
-| Input Name   | Description                                                  | Default Value        |
-|--------------|--------------------------------------------------------------|-----------------------|
-| `name` | Git URL of the remote repository to check (Optional)         | {{ github.event.repository.name }}"         |
-| `description` | Git URL of the remote repository to check (Optional)         | Empty String          |
-| `remoterepo` | Git URL of the remote repository to check (Optional)         | Empty String          |
-| `publiccode` | `publiccode.yml` path (Optional), e.g. `data/publiccode.yml` | `publiccode.yml`      |
-| `gitname`    | Git name configuration for bump commit (Optional)            | `Open Catalogi bot`  |
-| `gitmail`    | Git mail configuration for bump commit (Optional)            | `bot@opencatalogi.nl` |
+| Input Name   | Description                                                  | Default Value                            |
+|--------------|--------------------------------------------------------------|------------------------------------------|
+| `name` | Git URL of the remote repository to check (Optional)         | {{ github.event.repository.name }} <br/> |
+| `description` | Git URL of the remote repository to check (Optional)         | Empty String                             |
+| `remoterepo` | Git URL of the remote repository to check (Optional)         | Empty String                             |
+| `publiccode` | `publiccode.yml` path (Optional), e.g. `data/publiccode.yml` | `publiccode.yml`                         |
+| `federlize` | Wheter to send an update event to the federilized open catalogi network | true                                     |
+| `save` | Wheter to actually save the file to github | true                                     |
+| `gitname`    | Git name configuration for bump commit (Optional)            | `Open Catalogi bot`                      |
+| `gitmail`    | Git mail configuration for bump commit (Optional)            | `bot@opencatalogi.nl`                    |
 
 example ussage of the inputs
 

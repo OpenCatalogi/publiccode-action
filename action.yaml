@@ -22,6 +22,16 @@ inputs:
     required: false
     type: boolean
     default: false
+  federlize:
+    description: 'Wheter to send an update event to the federilized open catalogi network'
+    required: false
+    type: boolean
+    default: true
+  save:
+    description: 'Wheter to actually save the file to github'
+    required: false
+    type: boolean
+    default: true
   # git configuration
   git-name:
     description: 'Git name configuration for the commit'
@@ -263,7 +273,7 @@ runs:
 
     # Commit changes if it is a normal repository
     - name: Commit changes
-      if: (!contains(github.repository, '.github'))
+      if: (!contains(github.repository, '.github') && inputs.save)
       shell: bash
       run: |
         git config --local user.email "${{ inputs.git-mail }}"
@@ -274,7 +284,7 @@ runs:
         git push
     # Commit changes if it is an organisation repository
     - name: Commit changes
-      if: (contains(github.repository, '.github'))
+      if: (contains(github.repository, '.github') && inputs.save)
       shell: bash
       run: |
         git config --local user.email "${{ inputs.git-mail }}"
@@ -285,6 +295,7 @@ runs:
         git push
     # Post Repository URL to OpenCatalogi API
     - name: Post Repository URL to OpenCatalogi API
+      if: (inputs.federlize)
       shell: bash
       run: |
         curl -X POST "https://api.opencatalogi.nl/api/github_events" \
