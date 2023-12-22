@@ -119,7 +119,7 @@ runs:
         
         if (data == {}): 
           try:
-            with open("publiccode.yml", "r" as f:
+            with open("publiccode.yml", "r") as f:
               data = yaml.safe_load(f)
               filename = "publiccode.yml"
           except FileNotFoundError:
