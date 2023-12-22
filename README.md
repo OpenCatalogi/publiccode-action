@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@1.3.0
+        uses: OpenCatalogi/publiccode-action@latest
 ````
 
 In the above example a `publiccode` file is updated every time code on the `main` branche is touched
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@1.2.1
+        uses: OpenCatalogi/publiccode-action@latest
         with:
           name: ${{ github.head_ref }}   # Git URL of the remote repository to check
           description: ${{ github.head_ref }}   # Git URL of the remote repository to check
@@ -93,7 +93,7 @@ To use this action, simply include it as a step in your workflow file. No inputs
 ````yaml
 steps:
   - name: Update publiccode.yaml
-    uses: OpenCatalogi/publiccode-action@1.2.1
+    uses: OpenCatalogi/publiccode-action@latest
     with:
       name: "My Codebase"
       description: "This is a sample repository description"
@@ -122,9 +122,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@1.2.1
+        uses: OpenCatalogi/publiccode-action@latest
       - name: Deploy Product Github Page
-        uses: OpenCatalogi/productpage-action@1.0.0
+        uses: OpenCatalogi/productpage-action@latest
 ````
 
 [Read more](https://github.com/marketplace/actions/create-an-product-page) about the product  page action 
