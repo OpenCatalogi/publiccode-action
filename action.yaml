@@ -32,22 +32,28 @@ inputs:
     required: false
     type: boolean
     default: true
-  # git configuration
-  git-name:
+
+  # Git Configuration
+  git_name:
     description: 'Git name configuration for the commit'
     required: false
     type: string
     default: 'Open Catalogi bot'
-  git-mail:
+  git_mail:
     description: 'Git mail configuration for the commit'
     required: false
     type: string
     default: 'bot@opencatalogi.nl'
-  git-commit-message:
-    description: 'The description for the  commit'
+  git_commit_message:
+    description: 'The description for the commit'
     required: false
     type: string
     default: ${{ github.event.repository.html_url }}
+  github_organization_url:
+    description: 'The repository to which the results are limited (used to only look in your own organization)'
+    required: false
+    type: string
+    default: 'https://github.com/${{ github.repository_owner }}'
 
 outputs:
   version:
@@ -287,11 +293,11 @@ runs:
       if: (contains(github.repository, '.github') && inputs.save)
       shell: bash
       run: |
-        git config --local user.email "${{ inputs.git-mail }}"
-        git config --local user.name "${{ inputs.git-name }}"
+        git config --local user.email "${{ inputs.git_mail }}"
+        git config --local user.name "${{ inputs.git_name }}"
         git pull
         git add open*atalogi.y*ml
-        git commit -m "${{ inputs.git-commit-message }}" || echo "No changes to commit"
+        git commit -m "${{ inputs.git_commit_message }}" || echo "No changes to commit"
         git push
     # Post Repository URL to OpenCatalogi API
     - name: Post Repository URL to OpenCatalogi API
