@@ -1,0 +1,16 @@
+[
+  {
+    "label": "Open Catalogi",
+    "type": "external",
+    "handleClick": {
+      "link": "https://opencatalogi.nl/"
+    }
+  },
+  {
+    "label": "Documentatie",
+    "type": "internalMarkdown",
+    "handleClick": {
+      "link": "https://documentatie.opencatalogi.nl/"
+    }
+  }
+]
