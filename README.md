@@ -31,7 +31,7 @@ In the above example a `publiccode` file is updated every time code on the `main
 > Alternatively to setting the write permission for the workflow, you can also supply the action with an access token or an SSH key; see inputs for more details.
 
 ### Sending event to OpenCatalogi
-This action also automatically sends an update message to the OpenCatalogi-API, so that the publiccode is reloaded by OpenCatalogi. However, the repository has to be indexed by GitHub for this to work properly the first time. This can be done by performing a search on the GitHub website in the repository, for example by searching `repo:{{your org/user}}/{{your repo}} publiccode` in the search bar on the GitHub website.
+This action also automatically sends an update message to the OpenCatalogi-API, so that the publiccode is reloaded by OpenCatalogi. However, the repository has to be indexed by GitHub for this to work properly the first time. This can be done by performing a search on the GitHub website in the repository, for example by searching `repo:{{your org/user}}/{{your repo}} publiccode` in the search bar on the GitHub website. This might take 10-15 minutes and several refreshes of the GitHub website.
 
 ## Working with protected branches
 It is common (and good) practise to protect the main branche of a repository from direct file editing and only allowing this trough pull requests. This will however couse the action (and workflow containing it) to fail becouse the workflow won't have the rights to actually write or create the resulting publiccode or opencatalogi files to the repository.
